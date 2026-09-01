@@ -938,7 +938,9 @@ padding: 7px 9px;
 
     try {
 
-      const response = await fetch("music-index.md");
+      const response = await fetch(
+  "https://raw.githubusercontent.com/kianes/radio-ainur/main/music-index.md"
+);
 
       if (!response.ok) {
         throw new Error("Unable to load music-index.md");
