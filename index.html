@@ -186,72 +186,337 @@
     }
 
     .alphabet button:hover,
-    .alphabet button.active {
-      background: white;
-      color: black;
-    }
+* {
+  box-sizing: border-box;
+  }
 
-    .artist {
-      border-top: 1px solid #292929;
-      padding: 25px 0;
-    }
+html {
+scroll-behavior: smooth;
+}
 
-    .artist-name {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
+body {
+margin: 0;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+background: #0d0d0d;
+color: #f2f2f2;
+line-height: 1.6;
+}
 
-    .track {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 9px 0;
-      color: #aaa;
-    }
+a {
+color: inherit;
+}
 
-    .track a {
-      color: #eee;
-      text-decoration: none;
-    }
+.container {
+width: min(1100px, 92%);
+margin: 0 auto;
+}
 
-    .track a:hover {
-      text-decoration: underline;
-    }
+/* HERO */
 
-    .number {
-      color: #666;
-      min-width: 45px;
-    }
+header {
+min-height: 72vh;
+display: flex;
+align-items: center;
+border-bottom: 1px solid #292929;
+position: relative;
+overflow: hidden;
+}
 
-    footer {
-      padding: 60px 0;
-      color: #666;
-      font-size: 0.9rem;
-    }
+header::after {
+content: "AINUR";
+position: absolute;
+right: -40px;
+bottom: -80px;
+font-size: clamp(10rem, 30vw, 28rem);
+font-weight: 800;
+letter-spacing: -0.08em;
+color: #151515;
+pointer-events: none;
+}
 
-    @media (max-width: 650px) {
-      .nav-links {
-        display: none;
-      }
+.hero {
+padding: 90px 0;
+position: relative;
+z-index: 1;
+}
 
-      header {
-        min-height: 60vh;
-      }
+.eyebrow {
+font-size: 0.75rem;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+opacity: 0.5;
+margin-bottom: 22px;
+}
 
-      .stats {
-        gap: 25px;
-      }
+h1 {
+margin: 0;
+font-size: clamp(4rem, 12vw, 9rem);
+line-height: 0.82;
+letter-spacing: -0.07em;
+}
 
-      .track {
-        display: block;
-      }
+.tagline {
+max-width: 650px;
+margin: 42px 0 0;
+font-size: clamp(1.05rem, 2vw, 1.45rem);
+color: #aaa;
+}
 
-      .number {
-        display: inline-block;
-        margin-right: 8px;
-      }
-    }
+.stats {
+display: flex;
+gap: 60px;
+margin-top: 55px;
+flex-wrap: wrap;
+}
+
+.stat strong {
+display: block;
+font-size: 2.3rem;
+letter-spacing: -0.04em;
+}
+
+.stat span {
+color: #666;
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.14em;
+}
+
+/* NAVIGATION */
+
+nav {
+position: sticky;
+top: 0;
+z-index: 10;
+border-bottom: 1px solid #292929;
+background: rgba(13, 13, 13, 0.9);
+backdrop-filter: blur(12px);
+}
+
+nav .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+min-height: 64px;
+}
+
+.logo {
+font-weight: 700;
+letter-spacing: 0.1em;
+font-size: 0.85rem;
+}
+
+.nav-links {
+display: flex;
+gap: 28px;
+}
+
+.nav-links a {
+text-decoration: none;
+color: #888;
+font-size: 0.85rem;
+}
+
+.nav-links a:hover {
+color: #fff;
+}
+
+/* SECTIONS */
+
+section {
+padding: 110px 0;
+border-bottom: 1px solid #292929;
+}
+
+h2 {
+font-size: clamp(2.2rem, 5vw, 4rem);
+margin: 0 0 22px;
+letter-spacing: -0.05em;
+}
+
+.intro {
+max-width: 700px;
+color: #999;
+font-size: 1.05rem;
+}
+
+/* BUTTONS */
+
+.links {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+margin-top: 35px;
+}
+
+.button {
+display: inline-block;
+padding: 12px 20px;
+border: 1px solid #444;
+text-decoration: none;
+font-size: 0.9rem;
+transition: all 0.2s ease;
+}
+
+.button:hover {
+background: #fff;
+color: #000;
+}
+
+/* ARCHIVE */
+
+.archive {
+margin-top: 55px;
+}
+
+.search {
+width: 100%;
+padding: 19px 20px;
+background: #141414;
+border: 1px solid #333;
+color: #fff;
+font-size: 1rem;
+outline: none;
+transition: border 0.2s ease;
+}
+
+.search::placeholder {
+color: #555;
+}
+
+.search:focus {
+border-color: #777;
+}
+
+.alphabet {
+display: flex;
+flex-wrap: wrap;
+gap: 7px;
+margin: 24px 0 45px;
+}
+
+.alphabet button {
+min-width: 38px;
+border: 1px solid #333;
+background: #111;
+color: #888;
+padding: 8px 11px;
+cursor: pointer;
+font-size: 0.8rem;
+transition: all 0.2s ease;
+}
+
+.alphabet button:hover,
+.alphabet button.active {
+background: #fff;
+color: #000;
+}
+
+/* ARTIST */
+
+.artist {
+border-top: 1px solid #292929;
+padding: 30px 0 25px;
+}
+
+.artist-name {
+font-size: 1.35rem;
+font-weight: 600;
+letter-spacing: -0.02em;
+margin-bottom: 14px;
+}
+
+.track {
+display: grid;
+grid-template-columns: 55px 1fr;
+gap: 15px;
+padding: 11px 14px;
+margin: 2px 0;
+transition: background 0.2s ease;
+}
+
+.track:hover {
+background: #151515;
+}
+
+.track a {
+color: #bbb;
+text-decoration: none;
+transition: color 0.2s ease;
+}
+
+.track a:hover {
+color: #fff;
+}
+
+.number {
+color: #555;
+font-variant-numeric: tabular-nums;
+font-size: 0.85rem;
+}
+
+/* EMPTY STATE */
+
+.empty-state {
+border: 1px solid #292929;
+padding: 45px 25px;
+text-align: center;
+color: #666;
+}
+
+/* FOOTER */
+
+footer {
+padding: 70px 0;
+color: #555;
+font-size: 0.8rem;
+}
+
+footer .container {
+display: flex;
+justify-content: space-between;
+gap: 20px;
+flex-wrap: wrap;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+header {
+min-height: 65vh;
+}
+
+.hero {
+padding: 70px 0;
+}
+
+.nav-links {
+display: none;
+}
+
+.stats {
+gap: 30px;
+}
+
+section {
+padding: 80px 0;
+}
+
+.track {
+grid-template-columns: 45px 1fr;
+padding: 12px 8px;
+}
+
+.alphabet {
+gap: 5px;
+}
+
+.alphabet button {
+min-width: 34px;
+padding: 7px 9px;
+}
+}
   </style></head><body><header>
   <div class="container hero"><div class="eyebrow">A Curated Music Archive</div>
 
@@ -512,17 +777,17 @@
 
     if (!filtered.length) {
 
-      results.innerHTML = `
-        <div class="artist">
-          <div class="artist-name">No results</div>
-          <p style="color:#777;">
-            No tracks were found in the Radio Ainur archive.
-          </p>
-        </div>
-      `;
+  results.innerHTML = `
+    <div class="empty-state">
+      <strong>No tracks found</strong>
+      <p>
+        Try another artist, track title, or archive number.
+      </p>
+    </div>
+  `;
 
-      return;
-    }
+  return;
+}
 
     const grouped = {};
 
