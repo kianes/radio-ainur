@@ -980,14 +980,7 @@ renderTracks();
     }
   }
 
-  search.addEventListener("input", () => {
-
-    document
-      .querySelectorAll(".alphabet button")
-      .forEach(button => button.classList.remove("active"));
-
-    renderTracks(search.value);
-    function renderFeaturedTracks() {
+  function renderFeaturedTracks() {
 
   const container =
     document.getElementById("featured-tracks");
@@ -995,12 +988,6 @@ renderTracks();
   if (!container || !archive.length) {
     return;
   }
-
-  /*
-   * Featured tracks are selected from the existing archive.
-   * These are intentionally matched by artist + title,
-   * so the source of truth remains music-index.md.
-   */
 
   const featuredSelection = [
     {
@@ -1042,27 +1029,45 @@ renderTracks();
         Featured
       </span>
 
-      <h3>${escapeHtml(track.title)}</h3>
+      <h3>${escapeHTML(track.title)}</h3>
 
       <div class="artist">
-        ${escapeHtml(track.artist)}
+        ${escapeHTML(track.artist)}
       </div>
 
-      <a href="${track.url}" target="_blank" rel="noopener noreferrer">
+      <a
+        href="${track.url}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Listen on Telegram
         <span>↗</span>
       </a>
 
       ${
         track.number
-          ? `<div class="track-number">Archive #${escapeHtml(track.number)}</div>`
+          ? `<div class="track-number">
+              Archive #${escapeHTML(track.number)}
+             </div>`
           : ""
       }
 
     </article>
   `).join("");
 }
-  });
+
+
+search.addEventListener("input", () => {
+
+  document
+    .querySelectorAll(".alphabet button")
+    .forEach(button =>
+      button.classList.remove("active")
+    );
+
+  renderTracks(search.value);
+
+});
 
   loadArchive();
 </script></body>
