@@ -527,15 +527,17 @@ padding: 7px 9px;
 </p>
 
 <div class="stats">
+
   <div class="stat">
-    <strong>549</strong>
+    <strong id="track-count">—</strong>
     <span>Tracks</span>
   </div>
 
   <div class="stat">
-    <strong>∞</strong>
-    <span>Possibilities</span>
+    <strong id="artist-count">—</strong>
+    <span>Artists</span>
   </div>
+
 </div>
 
   </div>
@@ -852,8 +854,18 @@ padding: 7px 9px;
 
       archive = parseMarkdown(markdown);
 
-      renderAlphabet();
-      renderTracks();
+const uniqueArtists = new Set(
+  archive.map(track => track.artist)
+);
+
+document.getElementById("track-count").textContent =
+  archive.length;
+
+document.getElementById("artist-count").textContent =
+  uniqueArtists.size;
+
+renderAlphabet();
+renderTracks();
 
     } catch (error) {
 
