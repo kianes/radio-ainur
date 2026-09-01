@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Radio Ainur — Music Archive</title>  <meta name="description" content="Radio Ainur — A curated 549-track music archive for discovery, listening, and revisiting.">  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0d0d0d;
+      color: #f2f2f2;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #292929;
+    }
+
+    .hero {
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+    }
+
+    .tagline {
+      max-width: 650px;
+      margin: 35px 0 0;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: #bdbdbd;
+    }
+
+    .stats {
+      display: flex;
+      gap: 50px;
+      margin-top: 55px;
+      flex-wrap: wrap;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+    }
+
+    .stat span {
+      color: #777;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #292929;
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(10px);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 64px;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    section {
+      padding: 100px 0;
+      border-bottom: 1px solid #292929;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin: 0 0 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .intro {
+      max-width: 700px;
+      color: #aaa;
+      font-size: 1.1rem;
+    }
+
+    .links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border: 1px solid #444;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: white;
+      color: black;
+    }
+
+    .archive {
+      margin-top: 50px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 18px;
+      background: #151515;
+      border: 1px solid #333;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: #777;
+    }
+
+    .alphabet {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 25px 0;
+    }
+
+    .alphabet button {
+      border: 1px solid #333;
+      background: transparent;
+      color: #aaa;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .alphabet button:hover,
+    .alphabet button.active {
+      background: white;
+      color: black;
+    }
+
+    .artist {
+      border-top: 1px solid #292929;
+      padding: 25px 0;
+    }
+
+    .artist-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .track {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 9px 0;
+      color: #aaa;
+    }
+
+    .track a {
+      color: #eee;
+      text-decoration: none;
+    }
+
+    .track a:hover {
+      text-decoration: underline;
+    }
+
+    .number {
+      color: #666;
+      min-width: 45px;
+    }
+
+    footer {
+      padding: 60px 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 650px) {
+      .nav-links {
+        display: none;
+      }
+
+      header {
+        min-height: 60vh;
+      }
+
+      .stats {
+        gap: 25px;
+      }
+
+      .track {
+        display: block;
+      }
+
+      .number {
+        display: inline-block;
+        margin-right: 8px;
+      }
+    }
+  </style></head><body><header>
+  <div class="container hero"><div class="eyebrow">A Curated Music Archive</div>
+
+<h1>Radio<br>Ainur</h1>
+
+<p class="tagline">
+  Music should be discovered, experienced, remembered, and revisited.
+</p>
+
+<div class="stats">
+  <div class="stat">
+    <strong>549</strong>
+    <span>Tracks</span>
+  </div>
+
+  <div class="stat">
+    <strong>∞</strong>
+    <span>Possibilities</span>
+  </div>
+</div>
+
+  </div>
+</header><nav>
+  <div class="container"><div class="logo">RADIO AINUR</div>
+
+<div class="nav-links">
+  <a href="#archive">Archive</a>
+  <a href="#about">About</a>
+  <a href="#connect">Connect</a>
+</div>
+
+  </div>
+</nav><main><section id="archive">
+  <div class="container"><div class="eyebrow">The Collection</div>
+
+<h2>Music Archive</h2>
+
+<p class="intro">
+  Explore the Radio Ainur collection by artist or search across the archive.
+  Every indexed track connects back to its original Telegram publication.
+</p>
+
+<div class="archive">
+
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="Search artist or track..."
+    aria-label="Search the music archive"
+  >
+
+  <div id="alphabet" class="alphabet"></div>
+
+  <div id="results"></div>
+
+</div>
+
+  </div>
+</section><section id="about">
+  <div class="container"><div class="eyebrow">About the Project</div>
+
+<h2>More than a playlist.</h2>
+
+<p class="intro">
+  Radio Ainur is an independent music curation project combining
+  music discovery, editorial context, metadata, and digital archiving.
+  The collection is designed to be explored and revisited over time.
+</p>
+
+<div class="links">
+
+  <a class="button" href="README.md">
+    Project Documentation
+  </a>
+
+</div>
+
+  </div>
+</section><section id="connect">
+  <div class="container"><div class="eyebrow">Radio Ainur Ecosystem</div>
+
+<h2>Listen. Explore. Revisit.</h2>
+
+<p class="intro">
+  Each platform provides a different way to experience the archive.
+</p>
+
+<div class="links">
+
+  <a
+    class="button"
+    href="https://t.me/radioainur"
+    target="_blank"
+    rel="noopener"
+  >
+    Telegram
+  </a>
+
+  <a
+    class="button"
+    href="https://open.spotify.com/playlist/2WApbnha1PDsTealeyxBiw"
+    target="_blank"
+    rel="noopener"
+  >
+    Spotify
+  </a>
+
+</div>
+
+  </div>
+</section></main><footer>
+  <div class="container">
+    Radio Ainur · A curated music archive
+  </div>
+</footer><script>
+  /*
+   * The archive data will be connected to music-index.md
+   * in the next implementation step.
+   */
+
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+  const alphabetContainer = document.getElementById("alphabet");
+
+  alphabet.forEach(letter => {
+    const button = document.createElement("button");
+
+    button.textContent = letter;
+
+    button.addEventListener("click", () => {
+      document.getElementById("search").value = letter;
+      document.getElementById("search").dispatchEvent(new Event("input"));
+    });
+
+    alphabetContainer.appendChild(button);
+  });
+
+  const results = document.getElementById("results");
+
+  results.innerHTML = `
+    <div class="artist">
+      <div class="artist-name">Archive Index</div>
+      <p style="color:#777;">
+        The complete 549-track archive will appear here.
+      </p>
+      <a class="button" href="music-index.md">
+        Open Full Music Index
+      </a>
+    </div>
+  `;
+
+  document.getElementById("search").addEventListener("input", function () {
+    const query = this.value.toLowerCase().trim();
+
+    if (!query) {
+      results.innerHTML = `
+        <div class="artist">
+          <div class="artist-name">Archive Index</div>
+          <p style="color:#777;">
+            Browse the complete artist-based catalogue.
+          </p>
+          <a class="button" href="music-index.md">
+            Open Full Music Index
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    results.innerHTML = `
+      <div class="artist">
+        <div class="artist-name">Search</div>
+        <p style="color:#777;">
+          Search interface prepared for the Radio Ainur archive.
+          Full indexed search will be connected to the 549-track catalogue
+          in the next step.
+        </p>
+      </div>
+    `;
+  });
+</script></body>
+</html>
