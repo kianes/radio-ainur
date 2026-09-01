@@ -290,8 +290,8 @@
 <h2>Music Archive</h2>
 
 <p class="intro">
-  Explore the Radio Ainur collection by artist or search across the archive.
-  Every indexed track connects back to its original Telegram publication.
+  Explore 549 curated tracks by artist, title, or archive number.
+  Every indexed track connects directly to its original Telegram publication.
 </p>
 
 <div class="archive">
@@ -368,70 +368,252 @@
     Radio Ainur · A curated music archive
   </div>
 </footer><script>
-  /*
-   * The archive data will be connected to music-index.md
-   * in the next implementation step.
-   */
-
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
+  const results = document.getElementById("results");
+  const search = document.getElementById("search");
   const alphabetContainer = document.getElementById("alphabet");
 
-  alphabet.forEach(letter => {
-    const button = document.createElement("button");
+  let archive = [];
 
-    button.textContent = letter;
+  function escapeHTML(value) {
+    return value
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-    button.addEventListener("click", () => {
-      document.getElementById("search").value = letter;
-      document.getElementById("search").dispatchEvent(new Event("input"));
+  function parseMarkdown(markdown) {
+    const lines = markdown.split("\n");
+
+    let currentArtist = null;
+    const tracks = [];
+
+    for (const line of lines) {
+
+      // Artist heading
+      const artistMatch = line.match(/^##\s+(.+)$/);
+
+      if (artistMatch) {
+        currentArtist = artistMatch[1].trim();
+        continue;
+      }
+
+      // Track link
+      const trackMatch = line.match(
+        /^-\s+\[(.*?)\]\((https:\/\/t\.me\/radioainur\/\d+)\)/
+      );
+
+      if (trackMatch && currentArtist) {
+
+        const rawTitle = trackMatch[1].trim();
+
+        const numberMatch = rawTitle.match(/^#(\d+)\s+—\s+(.*)$/);
+
+        let number = "";
+        let title = rawTitle;
+
+        if (numberMatch) {
+          number = numberMatch[1];
+          title = numberMatch[2];
+        }
+
+        tracks.push({
+          artist: currentArtist,
+          title: title,
+          number: number,
+          url: trackMatch[2]
+        });
+      }
+    }
+
+    return tracks;
+  }
+
+  function renderAlphabet() {
+
+    const letters = [
+      ...new Set(
+        archive.map(track =>
+          track.artist
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .charAt(0)
+            .toUpperCase()
+        )
+      )
+    ].sort();
+
+    alphabetContainer.innerHTML = "";
+
+    const allButton = document.createElement("button");
+    allButton.textContent = "ALL";
+    allButton.classList.add("active");
+
+    allButton.addEventListener("click", () => {
+      search.value = "";
+      renderTracks("");
+      setActiveButton(allButton);
     });
 
-    alphabetContainer.appendChild(button);
-  });
+    alphabetContainer.appendChild(allButton);
 
-  const results = document.getElementById("results");
+    letters.forEach(letter => {
 
-  results.innerHTML = `
-    <div class="artist">
-      <div class="artist-name">Archive Index</div>
-      <p style="color:#777;">
-        The complete 549-track archive will appear here.
-      </p>
-      <a class="button" href="music-index.md">
-        Open Full Music Index
-      </a>
-    </div>
-  `;
+      const button = document.createElement("button");
+      button.textContent = letter;
 
-  document.getElementById("search").addEventListener("input", function () {
-    const query = this.value.toLowerCase().trim();
+      button.addEventListener("click", () => {
+        search.value = "";
+        renderTracks(letter);
+        setActiveButton(button);
+      });
 
-    if (!query) {
+      alphabetContainer.appendChild(button);
+    });
+  }
+
+  function setActiveButton(activeButton) {
+
+    document
+      .querySelectorAll(".alphabet button")
+      .forEach(button => button.classList.remove("active"));
+
+    activeButton.classList.add("active");
+  }
+
+  function renderTracks(query = "") {
+
+    const normalizedQuery = query
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    const filtered = archive.filter(track => {
+
+      const artist = track.artist
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+      const title = track.title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+      const number = track.number;
+
+      return (
+        artist.includes(normalizedQuery) ||
+        title.includes(normalizedQuery) ||
+        number.includes(normalizedQuery)
+      );
+    });
+
+    if (!filtered.length) {
+
       results.innerHTML = `
         <div class="artist">
-          <div class="artist-name">Archive Index</div>
+          <div class="artist-name">No results</div>
           <p style="color:#777;">
-            Browse the complete artist-based catalogue.
+            No tracks were found in the Radio Ainur archive.
           </p>
-          <a class="button" href="music-index.md">
-            Open Full Music Index
-          </a>
         </div>
       `;
+
       return;
     }
 
-    results.innerHTML = `
-      <div class="artist">
-        <div class="artist-name">Search</div>
-        <p style="color:#777;">
-          Search interface prepared for the Radio Ainur archive.
-          Full indexed search will be connected to the 549-track catalogue
-          in the next step.
-        </p>
-      </div>
-    `;
+    const grouped = {};
+
+    filtered.forEach(track => {
+
+      if (!grouped[track.artist]) {
+        grouped[track.artist] = [];
+      }
+
+      grouped[track.artist].push(track);
+    });
+
+    results.innerHTML = Object.entries(grouped)
+      .map(([artist, tracks]) => {
+
+        const trackHTML = tracks
+          .map(track => {
+
+            const numberHTML = track.number
+              ? `<span class="number">#${escapeHTML(track.number)}</span>`
+              : "";
+
+            return `
+              <div class="track">
+                ${numberHTML}
+                <a
+                  href="${track.url}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  ${escapeHTML(track.title)}
+                </a>
+              </div>
+            `;
+          })
+          .join("");
+
+        return `
+          <div class="artist">
+            <div class="artist-name">
+              ${escapeHTML(artist)}
+            </div>
+
+            ${trackHTML}
+          </div>
+        `;
+      })
+      .join("");
+  }
+
+  async function loadArchive() {
+
+    try {
+
+      const response = await fetch("music-index.md");
+
+      if (!response.ok) {
+        throw new Error("Unable to load music-index.md");
+      }
+
+      const markdown = await response.text();
+
+      archive = parseMarkdown(markdown);
+
+      renderAlphabet();
+      renderTracks();
+
+    } catch (error) {
+
+      console.error(error);
+
+      results.innerHTML = `
+        <div class="artist">
+          <div class="artist-name">Archive unavailable</div>
+          <p style="color:#777;">
+            The Radio Ainur music index could not be loaded.
+          </p>
+        </div>
+      `;
+    }
+  }
+
+  search.addEventListener("input", () => {
+
+    document
+      .querySelectorAll(".alphabet button")
+      .forEach(button => button.classList.remove("active"));
+
+    renderTracks(search.value);
   });
+
+  loadArchive();
 </script></body>
 </html>
