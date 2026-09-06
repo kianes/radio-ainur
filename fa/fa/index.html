@@ -1,0 +1,465 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Radio Ainur — آرشیو موسیقی</title><meta
+name="description"
+content="Radio Ainur — یک آرشیو منتخب موسیقی برای کشف، تجربه، به‌یادآوردن و کشف دوباره."
+
+«»
+
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #f3f0ea;
+      --muted: #aaa;
+      --accent: #d8c7a3;
+      --card: #151515;
+      --border: rgba(255,255,255,.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .language {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .language:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 110px 0 90px;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: .78rem;
+      letter-spacing: .18em;
+      direction: ltr;
+      text-align: right;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 30px 0 0;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: .2s ease;
+    }
+
+    .button:hover {
+      border-color: rgba(255,255,255,.3);
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    section {
+      padding: 70px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 35px;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .stat {
+      padding: 30px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .stat span {
+      color: var(--muted);
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .link-card {
+      display: block;
+      padding: 25px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: .2s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.3);
+    }
+
+    .link-card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .link-card span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    footer {
+      padding: 45px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 700px) {
+
+      .container {
+        width: min(100% - 28px, 1100px);
+      }
+
+      .hero {
+        padding: 75px 0 60px;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-header p {
+        margin-top: 12px;
+      }
+
+      .stats,
+      .links {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+      }
+    }
+  </style></head><body><header>
+  <div class="container nav"><a href="./" class="logo">
+  RADIO AINUR
+</a>
+
+<a
+  href="../"
+  class="language"
+  lang="en"
+  dir="ltr"
+>
+  English ↗
+</a>
+
+  </div>
+</header><main>  <div class="container"><section class="hero" style="border-top: 0;">
+
+  <p class="eyebrow">
+    MUSIC ARCHIVE & DISCOVERY
+  </p>
+
+  <h1>
+    Radio Ainur
+  </h1>
+
+  <p>
+    یک آرشیو منتخب موسیقی برای
+    <strong>کشف، تجربه، به‌یادآوردن و کشف دوباره.</strong>
+  </p>
+
+  <div class="actions">
+
+    <a
+      class="button primary"
+      href="#archive"
+    >
+      ورود به آرشیو
+    </a>
+
+    <a
+      class="button"
+      href="https://t.me/radioainur"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Telegram ↗
+    </a>
+
+    <a
+      class="button"
+      href="https://open.spotify.com/playlist/2WApbnha1PDsTealeyxBiw"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Spotify ↗
+    </a>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-header">
+
+    <div>
+      <p class="eyebrow">
+        ARCHIVE
+      </p>
+
+      <h2>
+        آرشیو Radio Ainur
+      </h2>
+    </div>
+
+    <p>
+      مجموعه‌ای از قطعات موسیقی که برای شنیدن،
+      بازگشت و کشف دوباره در یک آرشیو ماندگار ثبت شده‌اند.
+    </p>
+
+  </div>
+
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong>549</strong>
+      <span>قطعه موسیقی</span>
+    </div>
+
+    <div class="stat">
+      <strong>—</strong>
+      <span>هنرمند</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="archive">
+
+  <div class="section-header">
+
+    <div>
+      <p class="eyebrow">
+        DISCOVER
+      </p>
+
+      <h2>
+        کشف موسیقی
+      </h2>
+    </div>
+
+    <p>
+      برای مشاهده فهرست کامل قطعات،
+      به آرشیو موسیقی مراجعه کنید.
+    </p>
+
+  </div>
+
+
+  <div class="links">
+
+    <a
+      class="link-card"
+      href="../music-index.md"
+    >
+      <strong>
+        فهرست موسیقی
+      </strong>
+
+      <span>
+        مشاهده آرشیو کامل قطعات
+      </span>
+    </a>
+
+
+    <a
+      class="link-card"
+      href="https://t.me/radioainur"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <strong>
+        کانال Telegram
+      </strong>
+
+      <span>
+        شنیدن و دنبال کردن انتشارهای Radio Ainur
+      </span>
+    </a>
+
+
+    <a
+      class="link-card"
+      href="https://open.spotify.com/playlist/2WApbnha1PDsTealeyxBiw"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <strong>
+        Playlist در Spotify
+      </strong>
+
+      <span>
+        بخشی از مجموعه در Spotify
+      </span>
+    </a>
+
+  </div>
+
+</section>
+
+
+<section>
+
+  <div class="section-header">
+
+    <div>
+      <p class="eyebrow">
+        ABOUT
+      </p>
+
+      <h2>
+        درباره پروژه
+      </h2>
+    </div>
+
+  </div>
+
+  <p style="max-width: 720px; color: var(--muted);">
+
+    Radio Ainur یک پروژه مستقل برای کیوریشن و آرشیو موسیقی است.
+    قطعات موسیقی در این پروژه کشف، انتخاب، ثبت و سازمان‌دهی می‌شوند
+    تا امکان تجربه و بازگشت دوباره به آن‌ها فراهم باشد.
+
+  </p>
+
+</section>
+
+  </div></main><footer>  <div class="container"><div>
+  Radio Ainur — Music should be discovered,
+  experienced, remembered, and rediscovered.
+</div>
+
+<div style="margin-top: 12px;">
+
+  <a href="../">
+    English
+  </a>
+
+  &nbsp;·&nbsp;
+
+  <span>
+    فارسی
+  </span>
+
+</div>
+
+  </div></footer></body>
+</html>
