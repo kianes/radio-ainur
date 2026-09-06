@@ -213,7 +213,123 @@ content="Radio Ainur — یک آرشیو منتخب موسیقی برای کشف
       color: var(--muted);
       font-size: .9rem;
     }
+    /* Archive */
 
+.archive-tools {
+  margin-bottom: 28px;
+}
+
+.search {
+  width: 100%;
+  padding: 15px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search::placeholder {
+  color: #777;
+}
+
+.search:focus {
+  border-color: rgba(255,255,255,.3);
+}
+
+.alphabet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.alphabet button {
+  min-width: 38px;
+  padding: 7px 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.alphabet button:hover,
+.alphabet button.active {
+  color: var(--text);
+  border-color: rgba(255,255,255,.3);
+}
+
+.archive-results {
+  margin-top: 35px;
+}
+
+.artist {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+
+.artist-name {
+  margin-bottom: 14px;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.track-list {
+  display: grid;
+  gap: 8px;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 15px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.track-info {
+  min-width: 0;
+}
+
+.track-title {
+  font-weight: 500;
+}
+
+.track-number {
+  margin-top: 2px;
+  color: #777;
+  font-size: .78rem;
+  direction: ltr;
+  text-align: right;
+}
+
+.track-link {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: .85rem;
+}
+
+.empty {
+  padding: 45px 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+
+  .track {
+    align-items: flex-start;
+  }
+
+  .track-link {
+    font-size: .8rem;
+  }
+
+}
     @media (max-width: 700px) {
 
       .container {
@@ -328,12 +444,12 @@ content="Radio Ainur — یک آرشیو منتخب موسیقی برای کشف
   <div class="stats">
 
     <div class="stat">
-      <strong>549</strong>
+      <strong id="track-count">—</strong>
       <span>قطعه موسیقی</span>
     </div>
 
     <div class="stat">
-      <strong>—</strong>
+      <strong id="artist-count">—</strong>
       <span>هنرمند</span>
     </div>
 
@@ -343,104 +459,42 @@ content="Radio Ainur — یک آرشیو منتخب موسیقی برای کشف
 
 
 <section id="archive">
-
-  <div class="section-header">
-
-    <div>
-      <p class="eyebrow">
-        DISCOVER
-      </p>
-
-      <h2>
-        کشف موسیقی
-      </h2>
-    </div>
-
-    <p>
-      برای مشاهده فهرست کامل قطعات،
-      به آرشیو موسیقی مراجعه کنید.
-    </p>
-
-  </div>
-
-
-  <div class="links">
-
-    <a
-      class="link-card"
-      href="../music-index.md"
-    >
-      <strong>
-        فهرست موسیقی
-      </strong>
-
-      <span>
-        مشاهده آرشیو کامل قطعات
-      </span>
-    </a>
-
-
-    <a
-      class="link-card"
-      href="https://t.me/radioainur"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <strong>
-        کانال Telegram
-      </strong>
-
-      <span>
-        شنیدن و دنبال کردن انتشارهای Radio Ainur
-      </span>
-    </a>
-
-
-    <a
-      class="link-card"
-      href="https://open.spotify.com/playlist/2WApbnha1PDsTealeyxBiw"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <strong>
-        Playlist در Spotify
-      </strong>
-
-      <span>
-        بخشی از مجموعه در Spotify
-      </span>
-    </a>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="section-header">
-
-    <div>
-      <p class="eyebrow">
-        ABOUT
-      </p>
-
-      <h2>
-        درباره پروژه
-      </h2>
-    </div>
-
-  </div>
-
-  <p style="max-width: 720px; color: var(--muted);">
-
-    Radio Ainur یک پروژه مستقل برای کیوریشن و آرشیو موسیقی است.
-    قطعات موسیقی در این پروژه کشف، انتخاب، ثبت و سازمان‌دهی می‌شوند
-    تا امکان تجربه و بازگشت دوباره به آن‌ها فراهم باشد.
-
+<section id="archive">  <div class="section-header"><div>
+  <p class="eyebrow">
+    DISCOVER
   </p>
 
-</section>
+  <h2>
+    آرشیو موسیقی
+  </h2>
+</div>
+
+<p>
+  در میان هنرمندان و قطعات Radio Ainur جست‌وجو کنید.
+</p>
+
+  </div>  <div class="archive-tools"><input
+  id="search"
+  class="search"
+  type="search"
+  placeholder="جست‌وجوی هنرمند یا قطعه..."
+  aria-label="جست‌وجوی آرشیو موسیقی"
+>
+
+<div
+  id="alphabet"
+  class="alphabet"
+  aria-label="انتخاب هنرمند بر اساس حرف"
+></div>
+
+  </div>  <div
+    id="results"
+    class="archive-results"
+  >
+    <div class="empty">
+      در حال بارگذاری آرشیو...
+    </div>
+  </div></section>
 
   </div></main><footer>  <div class="container"><div>
   Radio Ainur — Music should be discovered,
@@ -461,5 +515,419 @@ content="Radio Ainur — یک آرشیو منتخب موسیقی برای کشف
 
 </div>
 
-  </div></footer></body>
+  </div></footer> <script>
+
+  let archive = [];
+  let activeLetter = null;
+
+
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  function parseMarkdown(markdown) {
+
+    const lines = markdown.split("\n");
+
+    let currentArtist = null;
+    const tracks = [];
+
+    for (const line of lines) {
+
+      const artistMatch =
+        line.match(/^##\s+(.+)$/);
+
+      if (artistMatch) {
+        currentArtist =
+          artistMatch[1].trim();
+
+        continue;
+      }
+
+
+      const trackMatch =
+        line.match(
+          /^-\s+(.*?)(https:\/\/t\.me\/radioainur\/\d+)/
+        );
+
+
+      if (trackMatch && currentArtist) {
+
+        const rawTitle =
+          trackMatch[1].trim();
+
+
+        const numberMatch =
+          rawTitle.match(
+            /^#(\d+)\s+—\s+(.*)$/
+          );
+
+
+        let number = "";
+        let title = rawTitle;
+
+
+        if (numberMatch) {
+
+          number =
+            numberMatch[1];
+
+          title =
+            numberMatch[2];
+
+        }
+
+
+        tracks.push({
+
+          artist: currentArtist,
+
+          title: title,
+
+          number: number,
+
+          url: trackMatch[2]
+
+        });
+
+      }
+
+    }
+
+
+    return tracks;
+
+  }
+
+
+  function renderAlphabet() {
+
+    const container =
+      document.getElementById("alphabet");
+
+    if (!container) {
+      return;
+    }
+
+
+    const artists = [
+      ...new Set(
+        archive.map(track => track.artist)
+      )
+    ];
+
+
+    const letters = [
+      ...new Set(
+        artists.map(artist =>
+          artist.charAt(0).toUpperCase()
+        )
+      )
+    ].sort();
+
+
+    container.innerHTML = "";
+
+
+    const allButton =
+      document.createElement("button");
+
+    allButton.textContent = "همه";
+
+    allButton.addEventListener(
+      "click",
+      () => {
+
+        activeLetter = null;
+
+        document
+          .querySelectorAll(".alphabet button")
+          .forEach(button =>
+            button.classList.remove("active")
+          );
+
+        allButton.classList.add("active");
+
+        renderTracks(
+          document.getElementById("search").value
+        );
+
+      }
+    );
+
+
+    container.appendChild(allButton);
+
+
+    for (const letter of letters) {
+
+      const button =
+        document.createElement("button");
+
+      button.textContent = letter;
+
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          activeLetter = letter;
+
+          document
+            .querySelectorAll(".alphabet button")
+            .forEach(button =>
+              button.classList.remove("active")
+            );
+
+          button.classList.add("active");
+
+          renderTracks(
+            document.getElementById("search").value
+          );
+
+        }
+      );
+
+
+      container.appendChild(button);
+
+    }
+
+  }
+
+
+  function renderTracks(searchTerm = "") {
+
+    const results =
+      document.getElementById("results");
+
+    if (!results) {
+      return;
+    }
+
+
+    const query =
+      searchTerm.trim().toLowerCase();
+
+
+    const filtered =
+      archive.filter(track => {
+
+        const matchesSearch =
+          !query ||
+          track.artist
+            .toLowerCase()
+            .includes(query) ||
+          track.title
+            .toLowerCase()
+            .includes(query);
+
+
+        const matchesLetter =
+          !activeLetter ||
+          track.artist
+            .charAt(0)
+            .toUpperCase() === activeLetter;
+
+
+        return (
+          matchesSearch &&
+          matchesLetter
+        );
+
+      });
+
+
+    if (!filtered.length) {
+
+      results.innerHTML = `
+        <div class="empty">
+          نتیجه‌ای پیدا نشد.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    const grouped = {};
+
+
+    for (const track of filtered) {
+
+      if (!grouped[track.artist]) {
+        grouped[track.artist] = [];
+      }
+
+      grouped[track.artist].push(track);
+
+    }
+
+
+    results.innerHTML =
+      Object.entries(grouped)
+        .map(([artist, tracks]) => `
+
+          <div class="artist">
+
+            <div class="artist-name">
+              ${escapeHTML(artist)}
+            </div>
+
+            <div class="track-list">
+
+              ${tracks.map(track => `
+
+                <div class="track">
+
+                  <div class="track-info">
+
+                    <div class="track-title">
+                      ${escapeHTML(track.title)}
+                    </div>
+
+                    ${
+                      track.number
+                        ? `
+                          <div class="track-number">
+                            Archive #${escapeHTML(track.number)}
+                          </div>
+                        `
+                        : ""
+                    }
+
+                  </div>
+
+
+                  <a
+                    class="track-link"
+                    href="${track.url}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    شنیدن ↗
+                  </a>
+
+                </div>
+
+              `).join("")}
+
+            </div>
+
+          </div>
+
+        `)
+        .join("");
+
+  }
+
+
+  async function loadArchive() {
+
+    try {
+
+      const response =
+        await fetch(
+          "https://raw.githubusercontent.com/kianes/radio-ainur/main/music-index.md"
+        );
+
+
+      if (!response.ok) {
+        throw new Error(
+          "Unable to load music-index.md"
+        );
+      }
+
+
+      const markdown =
+        await response.text();
+
+
+      archive =
+        parseMarkdown(markdown);
+
+
+      const uniqueArtists =
+        new Set(
+          archive.map(track => track.artist)
+        );
+
+
+      document
+        .getElementById("track-count")
+        .textContent =
+          archive.length;
+
+
+      document
+        .getElementById("artist-count")
+        .textContent =
+          uniqueArtists.size;
+
+
+      renderAlphabet();
+      renderTracks();
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+
+      document
+        .getElementById("results")
+        .innerHTML = `
+
+          <div class="empty">
+
+            آرشیو در دسترس نیست.
+
+            <br>
+
+            <small>
+              امکان بارگذاری آرشیو موسیقی وجود نداشت.
+            </small>
+
+          </div>
+
+        `;
+
+    }
+
+  }
+
+
+  document
+    .getElementById("search")
+    .addEventListener(
+      "input",
+      event => {
+
+        activeLetter = null;
+
+        document
+          .querySelectorAll(".alphabet button")
+          .forEach(button =>
+            button.classList.remove("active")
+          );
+
+        renderTracks(
+          event.target.value
+        );
+
+      }
+    );
+
+
+  loadArchive();
+
+</script></body>
 </html>
